@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - PickShareFunctional",
+            "request": "launch",
+            "mainClass": "PickShareFunctional"
+        }
+    ]
+}
