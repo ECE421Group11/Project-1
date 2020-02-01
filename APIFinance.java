@@ -8,25 +8,34 @@ import java.net.URLConnection;
 public class APIFinance {
   private static final String BASE_URL = "https://www.alphavantage.co/query?";
   private final static String apiKey = "8RNI5F8JRRCJ8JXL";
+  private final static String apiKey2 = "QGW7LCUP7Y96892B";
+  public static int counter = 0;
 
   public APIFinance(){
 
   }
 
-  public static BigDecimal getPrice(final String symbol) {
+  public static BigDecimal getPrice(final String symbol) throws InterruptedException{
     BigDecimal price = new BigDecimal(0);
     try {
-      URL url = new URL(BASE_URL + "function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=" + apiKey);
-      URLConnection connection = url.openConnection();
-      InputStreamReader inputStream = new InputStreamReader(connection.getInputStream(), "UTF-8");
-      BufferedReader bufferedReader = new BufferedReader(inputStream);
-      String line;
-      while ((line = bufferedReader.readLine()) != null) {
-        if (line.contains("price")) {
-            price = new BigDecimal(line.split("\"")[3].trim());
+      while (price.equals(new BigDecimal(0))){
+        URL url = new URL(BASE_URL + "function=GLOBAL_QUOTE&symbol=" + symbol + "&apikey=" + apiKey);
+        URLConnection connection = url.openConnection();
+        InputStreamReader inputStream = new InputStreamReader(connection.getInputStream(), "UTF-8");
+        BufferedReader bufferedReader = new BufferedReader(inputStream);
+        String line;
+        while ((line = bufferedReader.readLine()) != null) {
+          if (line.contains("price")) {
+              price = new BigDecimal(line.split("\"")[3].trim());
+              System.out.println("price is " + price);
+          }
         }
+        bufferedReader.close();
       }
-      bufferedReader.close();
+      counter++;
+      /*if (counter % 5 == 4) {
+        Thread.sleep(60000);
+      }*/
     }
     catch (IOException e) {
       System.out.println("failure sending request");
@@ -35,7 +44,7 @@ public class APIFinance {
   }
 
   public static void main(String[] args){
-    
+
   }
 
 }
