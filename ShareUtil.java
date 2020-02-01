@@ -1,6 +1,5 @@
-import java.util.function.*;
-import java.math.*;
-
+import java.math.BigDecimal;
+import java.util.function.Predicate;
 /**
  * ShareUtil contains various static utility methods that deal with shares. 
  */
@@ -27,3 +26,4 @@ public class ShareUtil{
     return share1.price.compareTo(share2.price) > 0 ? share1: share2;
   }
 }
+
