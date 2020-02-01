@@ -6,7 +6,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class APIFinance {
-  private static final String BASE_URL = "https://www.alphavantage.co/query?";
+  private static final String BASE_URL = "https://www.alphavantage.co/query?"
   private final static String apiKey = "BZWV3H8ON54SZAK7";
 
   public APIFinance(){
@@ -22,6 +22,7 @@ public class APIFinance {
         InputStreamReader inputStream = new InputStreamReader(connection.getInputStream(), "UTF-8");
         BufferedReader bufferedReader = new BufferedReader(inputStream);
         String line;
+        
         while ((line = bufferedReader.readLine()) != null) {
           if (line.contains("price")) {
               price = new BigDecimal(line.split("\"")[3].trim());
