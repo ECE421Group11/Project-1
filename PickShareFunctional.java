@@ -24,6 +24,7 @@ public class PickShareFunctional {
    * Currently tests findHighPrices
    */
   public static void main(String[] args){
+    // System.out.println(findHighPrices(Shares.symbols.stream(), 500).toString());
     System.out.println(findHighPrices(Shares.symbols.parallelStream(), 500).toString());
   }
 }
